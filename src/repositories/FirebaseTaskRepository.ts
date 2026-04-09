@@ -8,18 +8,19 @@ import type { Task, CreateTaskInput, UpdateTaskInput, SortBy } from '../types';
 import { generateSyncId } from '../utils/syncUtils';
 
 function toTask(id: string, data: Record<string, unknown>): Task {
+  const now = new Date();
   return {
     id,
     userId: data.userId as string,
     title: data.title as string,
     description: data.description as string | undefined,
     dueDate: data.dueDate ? (data.dueDate as Timestamp).toDate() : undefined,
-    isComplete: data.isComplete as boolean,
-    isFromCalendar: data.isFromCalendar as boolean,
+    isComplete: Boolean(data.isComplete),
+    isFromCalendar: Boolean(data.isFromCalendar),
     calendarEventId: data.calendarEventId as string | undefined,
-    createdAt: (data.createdAt as Timestamp).toDate(),
-    updatedAt: (data.updatedAt as Timestamp).toDate(),
-    syncId: data.syncId as string,
+    createdAt: data.createdAt ? (data.createdAt as Timestamp).toDate() : now,
+    updatedAt: data.updatedAt ? (data.updatedAt as Timestamp).toDate() : now,
+    syncId: (data.syncId as string) ?? generateSyncId(),
   };
 }
 
