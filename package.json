@@ -1,6 +1,6 @@
 {
   "name": "@noctilumina/task-manager-shared",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Shared types, repositories and services for Task Manager",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "test": "jest",
     "prepublishOnly": "yarn build"
   },
-  "dependencies": {
+  "peerDependencies": {
     "firebase": "^10.0.0"
   },
   "devDependencies": {

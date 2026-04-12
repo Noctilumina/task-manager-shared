@@ -1,3 +1,4 @@
+import type { FirebaseApp } from 'firebase/app';
 import {
   getFirestore, collection, doc, getDocs, getDoc,
   addDoc, updateDoc, deleteDoc, query, orderBy,
@@ -27,7 +28,7 @@ function toTask(id: string, data: Record<string, unknown>): Task {
 export class FirebaseTaskRepository implements ITaskRepository {
   private db: Firestore;
 
-  constructor() { this.db = getFirestore(); }
+  constructor(app: FirebaseApp) { this.db = getFirestore(app); }
 
   private ref(userId: string) {
     return collection(this.db, 'tasks', userId, 'tasks');

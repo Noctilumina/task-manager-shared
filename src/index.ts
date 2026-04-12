@@ -8,3 +8,4 @@ export * from './services/syncService';
 export * from './services/calendarService';
 export * from './utils/syncUtils';
 export * from './utils/constants';
+export * from './sharedServices';
